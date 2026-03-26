@@ -8,6 +8,8 @@ import MainRouter from '@/domains/main/router';
 // example router 가져오기 -------------
 //import ExampleRouter from '@/domains/example/router';
 
+import { Remote1App } from './remoteComponents';
+
 const routes: TAppRoute[] = [
 	{
 		path: '/',
@@ -20,6 +22,10 @@ const routes: TAppRoute[] = [
 	//	element: <RootLayout />,
 	//	children: ExampleRouter,
 	//},
+	{
+		path: '/remote1/*',
+		element: <Remote1App />,
+	},
 	{
 		path: '*',
 		element: (

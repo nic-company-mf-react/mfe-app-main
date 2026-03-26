@@ -13,6 +13,7 @@
 		"format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,md}\""
 	},
 	"dependencies": {
+		"lucide-react": "^1.7.0",
 		"react": "^19.2.4",
 		"react-dom": "^19.2.4",
 		"react-router": "^7.13.2"

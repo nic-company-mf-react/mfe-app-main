@@ -5,17 +5,17 @@
     const importMap = {
       
         "react": async () => {
-          let pkg = await import("__mf__virtual/mfe_mf_2_app_mf_2_main__prebuild__react__prebuild__.js");
+          let pkg = await import("__mf__virtual/mainApp__prebuild__react__prebuild__.js");
             return pkg;
         }
       ,
         "react-dom": async () => {
-          let pkg = await import("__mf__virtual/mfe_mf_2_app_mf_2_main__prebuild__react_mf_2_dom__prebuild__.js");
+          let pkg = await import("__mf__virtual/mainApp__prebuild__react_mf_2_dom__prebuild__.js");
             return pkg;
         }
       ,
         "react-router": async () => {
-          let pkg = await import("__mf__virtual/mfe_mf_2_app_mf_2_main__prebuild__react_mf_2_router__prebuild__.js");
+          let pkg = await import("__mf__virtual/mainApp__prebuild__react_mf_2_router__prebuild__.js");
             return pkg;
         }
       
@@ -27,7 +27,7 @@
             version: "19.0.0",
             scope: ["default"],
             loaded: false,
-            from: "mfe-app-main",
+            from: "mainApp",
             async get () {
               if (false) {
                 throw new Error(`[Module Federation] Shared module '${"react"}' must be provided by host`);
@@ -59,7 +59,7 @@
             version: "19.0.0",
             scope: ["default"],
             loaded: false,
-            from: "mfe-app-main",
+            from: "mainApp",
             async get () {
               if (false) {
                 throw new Error(`[Module Federation] Shared module '${"react-dom"}' must be provided by host`);
@@ -91,7 +91,7 @@
             version: "7.0.0",
             scope: ["default"],
             loaded: false,
-            from: "mfe-app-main",
+            from: "mainApp",
             async get () {
               if (false) {
                 throw new Error(`[Module Federation] Shared module '${"react-router"}' must be provided by host`);
@@ -121,8 +121,8 @@
     }
       const usedRemotes = [
                 {
-                  entryGlobalName: "remote1-app",
-                  name: "remote1-app",
+                  entryGlobalName: "remote1App",
+                  name: "remote1App",
                   type: "module",
                   entry: "http://localhost:5174/remote1Entry.js",
                   shareScope: "default",
