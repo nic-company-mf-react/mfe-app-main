@@ -18,7 +18,10 @@ export const navItems: NavItem[] = [
 	{
 		icon: <Layers />,
 		name: 'Remote1',
-		subItems: [{ name: 'Remote1 메인', path: '/remote1/main' }],
+		subItems: [
+			{ name: 'Remote1 메인', path: '/remote1/main' },
+			{ name: 'Remote1 계좌목록', path: '/remote1/example/account-page' },
+		],
 	},
 ];
 
