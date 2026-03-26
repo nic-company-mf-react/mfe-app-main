@@ -4,7 +4,7 @@ import { ChevronDownIcon } from 'lucide-react';
 import { useSidebar } from '@/shared/context/layout/SidebarContext';
 import { navItems, othersItems, type NavItem } from '@/shared/config/navigation';
 
-import logoSvg from '@/assets/images/logo/logo.svg';
+import logoSvg from '@/assets/images/logo/logo.png';
 
 const AppSidebar: React.FC = () => {
 	const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
