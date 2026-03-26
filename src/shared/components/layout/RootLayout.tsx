@@ -1,3 +1,4 @@
+import { SidebarProvider } from '@/shared/context/layout/SidebarContext';
 import LayoutContent from './LayoutContent';
 
 interface IRootLayoutProps {
@@ -5,5 +6,9 @@ interface IRootLayoutProps {
 }
 
 export default function RootLayout({}: IRootLayoutProps): React.ReactNode {
-	return <LayoutContent />;
+	return (
+		<SidebarProvider>
+			<LayoutContent />
+		</SidebarProvider>
+	);
 }

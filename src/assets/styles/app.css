@@ -1,8 +1,10 @@
+/* 레이아웃 폰트 */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap') layer(base);
 /* Tailwind 엔진 (v4 방식) */
 @import 'tailwindcss';
 /* tw-animate-css 사용 시 */
 @import 'tw-animate-css';
-/* 공유 라이브러리 스타일 (나중에 추가) */
-/* @import '@nic/mfe-lib-shared/styles'; */
-/* 공유 라이브러리 컴포넌트의 Tailwind 클래스 스캔 (나중에 추가) */
-/* @source "../node_modules/@nic/mfe-lib-shared/src"; */
+/* 공유 라이브러리 스타일 (디자인 토큰 + 레이아웃 유틸) */
+@import '@nic/mfe-lib-shared/styles';
+/* 공유 라이브러리 컴포넌트의 Tailwind 클래스 스캔 */
+/*@source "../node_modules/@nic/mfe-lib-shared/src";*/
