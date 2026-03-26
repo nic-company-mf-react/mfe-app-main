@@ -23,8 +23,14 @@ const routes: TAppRoute[] = [
 	//	children: ExampleRouter,
 	//},
 	{
-		path: '/remote1/*',
-		element: <Remote1App />,
+		path: '/remote1',
+		element: <RootLayout />,
+		children: [
+			{
+				path: '*',
+				element: <Remote1App />,
+			},
+		],
 	},
 	{
 		path: '*',
