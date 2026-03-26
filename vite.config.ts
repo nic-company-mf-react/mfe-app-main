@@ -6,8 +6,10 @@ import { resolve } from 'path';
 
 export default defineConfig(({ mode }) => {
 	const env = loadEnv(mode, process.cwd(), '');
+	const baseUrl = env.VITE_BASE_URL || '/';
 
 	return {
+		base: baseUrl,
 		plugins: [
 			react(),
 			tailwindcss(), // ← 추가
