@@ -124,7 +124,7 @@
                   entryGlobalName: "remote1App",
                   name: "remote1App",
                   type: "module",
-                  entry: "http://redsky0212.dothome.co.kr/2026/mfe-multirepo/remote1/remote1Entry.js",
+                  entry: "http://localhost:5174/remote1Entry.js",
                   shareScope: "default",
                 }
           
