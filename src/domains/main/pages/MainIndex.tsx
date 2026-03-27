@@ -190,28 +190,28 @@ export default function MainIndex(): React.ReactNode {
 								{/* 설명 */}
 								<p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">{app.description}</p>
 
-							{/* 연결 정보 */}
-							<div className="space-y-2 rounded-xl bg-gray-50 dark:bg-gray-950 p-3">
-								<div className="flex items-center gap-2">
-									<Cpu className="w-3.5 h-3.5 text-gray-400 dark:text-gray-500 shrink-0" />
-									<span className="text-xs text-gray-500 dark:text-gray-400 truncate">
-										{app.url}
-										{app.entryPath}
-									</span>
+								{/* 연결 정보 */}
+								<div className="space-y-2 rounded-xl bg-gray-50 dark:bg-gray-950 p-3">
+									<div className="flex items-center gap-2">
+										<Cpu className="w-3.5 h-3.5 text-gray-400 dark:text-gray-500 shrink-0" />
+										<span className="text-xs text-gray-500 dark:text-gray-400 truncate">
+											{app.url}
+											{app.entryPath}
+										</span>
+									</div>
 								</div>
-							</div>
 
-							{/* 태그 */}
-							<div className="flex flex-wrap gap-1.5">
-								{app.tags.map((tag) => (
-									<span
-										key={tag}
-										className="px-2 py-0.5 text-xs rounded-md bg-gray-100 text-gray-600 dark:bg-gray-950 dark:text-gray-400 dark:border dark:border-gray-700"
-									>
-										{tag}
-									</span>
-								))}
-							</div>
+								{/* 태그 */}
+								<div className="flex flex-wrap gap-1.5">
+									{app.tags.map((tag) => (
+										<span
+											key={tag}
+											className="px-2 py-0.5 text-xs rounded-md bg-gray-100 text-gray-600 dark:bg-gray-950 dark:text-gray-400 dark:border dark:border-gray-700"
+										>
+											{tag}
+										</span>
+									))}
+								</div>
 
 								{/* 액션 버튼 */}
 								<div className="mt-auto pt-1">
@@ -239,7 +239,7 @@ export default function MainIndex(): React.ReactNode {
 				</div>
 			</div>
 
-				{/* 시스템 아키텍처 안내 */}
+			{/* 시스템 아키텍처 안내 */}
 			<div className="rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-6">
 				<h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
 					<Server className="w-5 h-5 text-brand-500" />
@@ -263,21 +263,21 @@ export default function MainIndex(): React.ReactNode {
 						<div className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wide">
 							Module Federation 방식
 						</div>
-					<div className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 dark:bg-gray-950 border border-gray-100 dark:border-gray-700">
-						<Layers className="w-5 h-5 text-gray-500 dark:text-gray-400 shrink-0" />
-						<div>
-							<p className="text-sm font-medium text-gray-700 dark:text-gray-300">@module-federation/vite</p>
-							<p className="text-xs text-gray-400 dark:text-gray-500">Multirepo 방식 &mdash; 독립적 배포</p>
+						<div className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 dark:bg-gray-950 border border-gray-100 dark:border-gray-700">
+							<Layers className="w-5 h-5 text-gray-500 dark:text-gray-400 shrink-0" />
+							<div>
+								<p className="text-sm font-medium text-gray-700 dark:text-gray-300">@module-federation/vite</p>
+								<p className="text-xs text-gray-400 dark:text-gray-500">Multirepo 방식 &mdash; 독립적 배포</p>
+							</div>
 						</div>
 					</div>
-				</div>
 
-				<div className="flex flex-col gap-2">
-					<div className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wide">
-						공유 의존성
-					</div>
-					<div className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 dark:bg-gray-950 border border-gray-100 dark:border-gray-700">
-						<Cpu className="w-5 h-5 text-gray-500 dark:text-gray-400 shrink-0" />
+					<div className="flex flex-col gap-2">
+						<div className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wide">
+							공유 의존성
+						</div>
+						<div className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 dark:bg-gray-950 border border-gray-100 dark:border-gray-700">
+							<Cpu className="w-5 h-5 text-gray-500 dark:text-gray-400 shrink-0" />
 							<div>
 								<p className="text-sm font-medium text-gray-700 dark:text-gray-300">React 19 / React Router 7</p>
 								<p className="text-xs text-gray-400 dark:text-gray-500">singleton 공유 &mdash; 중복 로드 방지</p>
