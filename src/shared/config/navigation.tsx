@@ -21,6 +21,7 @@ export const navItems: NavItem[] = [
 		subItems: [
 			{ name: 'Remote1 메인', path: '/remote1/main' },
 			{ name: 'Remote1 계좌목록', path: '/remote1/example/account-page' },
+			{ name: 'Remote1 데이터가져오기', path: '/remote1/example/use-api-example' },
 		],
 	},
 ];
