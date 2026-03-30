@@ -15,6 +15,9 @@ export default defineConfig(({ mode }) => {
 			tailwindcss(), // ← 추가
 			federation({
 				name: 'mainApp',
+				dev: {
+					disableDynamicRemoteTypeHints: true,
+				},
 				remotes: {
 					remote1App: {
 						name: 'remote1App',
