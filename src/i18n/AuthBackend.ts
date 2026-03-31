@@ -48,6 +48,7 @@ export class AuthBackend implements BackendModule<AuthBackendOptions> {
 
 		// 토큰이 없으면 번들 폴백 사용 (로그인 전 상태)
 		if (!token) {
+			console.warn('[AuthBackend] No token found in localStorage - falling back to bundle');
 			callback(new Error('[AuthBackend] No token - using bundle fallback'), false);
 			return;
 		}
@@ -55,6 +56,9 @@ export class AuthBackend implements BackendModule<AuthBackendOptions> {
 		const url = loadPath
 			.replace('{{lng}}', encodeURIComponent(language))
 			.replace('{{ns}}', encodeURIComponent(namespace));
+
+		// 요청 URL 확인
+		console.debug(`[AuthBackend] Fetching translations: ${url}`);
 
 		fetch(url, {
 			headers: {
@@ -65,17 +69,21 @@ export class AuthBackend implements BackendModule<AuthBackendOptions> {
 			.then(async (res) => {
 				// 401: 토큰 만료 — 번들 폴백 유지 (갱신 로직은 axios interceptor 등에서 처리)
 				if (res.status === 401) {
+					console.warn('[AuthBackend] 401 Unauthorized - token may be expired');
 					callback(new Error('[AuthBackend] 401 Unauthorized - using bundle fallback'), false);
 					return;
 				}
 				if (!res.ok) {
+					console.error(`[AuthBackend] HTTP error ${res.status} for ${url}`);
 					throw new Error(`[AuthBackend] HTTP ${res.status}`);
 				}
+				console.log(`[AuthBackend] Loaded translations: ${language}/${namespace}`);
 				const data = (await res.json()) as Record<string, unknown>;
 				this.cache.set(cacheKey, { data, expiredAt: Date.now() + cacheTTL });
 				callback(null, data);
 			})
 			.catch((err: Error) => {
+				console.error('[AuthBackend] Failed to load translations:', err.message);
 				// 서버 장애, 네트워크 오류 → false 반환 시 i18next가 번들 폴백 유지
 				callback(err, false);
 			});

@@ -14,6 +14,22 @@ const AppHeader: React.FC = () => {
 	const currentLang = i18n.language?.startsWith('ko') ? 'ko' : 'en';
 
 	const toggleLanguage = () => {
+		// 로그인 시점에 서버에서 resources를 가져오게 처리하기 위해서 다음 로직을 넣음======
+		const token = localStorage.getItem('access_token');
+		if (token) {
+			// 토큰 있을 때만 번들 제거 후 서버에서 로드
+			// removeResourceBundle는 기존 리소스를 모두 지우기 때문에 바인딩 부분에 오류가 표시될 수 있다.
+			// 따라서 token이 확실히 있을 경우 또는 결과 데이터가 있을 경우에만 사용해야 한다.
+			// 사실 필요없음.
+			//i18n.removeResourceBundle('ko', 'common');
+			//i18n.removeResourceBundle('ko', 'main');
+			//i18n.removeResourceBundle('en', 'common');
+			//i18n.removeResourceBundle('en', 'main');
+			// 이제 backend.read()가 호출됨
+			i18n.reloadResources(['ko', 'en'], ['common', 'main']);
+		}
+		// ================================================================
+
 		const nextLang = currentLang === 'ko' ? 'en' : 'ko';
 		i18n.changeLanguage(nextLang);
 	};
