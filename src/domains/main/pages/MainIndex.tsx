@@ -1,4 +1,8 @@
 import { Link } from 'react-router';
+
+import { useTranslation } from 'react-i18next';
+import { i18n } from '@nic/mfe-lib-shared/i18n';
+
 import {
 	Layers,
 	CheckCircle,
@@ -11,6 +15,7 @@ import {
 	ArrowRight,
 	AlertTriangle,
 } from 'lucide-react';
+import { Button } from '@nic/mfe-lib-shared/components';
 
 type RemoteApp = {
 	id: number;
@@ -87,6 +92,8 @@ const disconnectedCount = remoteApps.filter((app) => app.status === 'disconnecte
 const pendingCount = remoteApps.filter((app) => app.status === 'pending').length;
 
 export default function MainIndex(): React.ReactNode {
+	const { t } = useTranslation('main');
+
 	return (
 		<div className="p-6 space-y-8">
 			{/* 헤더 섹션 */}
@@ -96,7 +103,9 @@ export default function MainIndex(): React.ReactNode {
 						<Network className="w-5 h-5 text-brand-600 dark:text-brand-400" />
 					</div>
 					<div>
-						<h1 className="text-2xl font-bold text-gray-900 dark:text-white">Micro-Frontend 호스트(Host) 대시보드</h1>
+						<h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+							Micro-Frontend 호스트(Host) {t('nav.dashboard')}
+						</h1>
 						<p className="text-sm text-gray-500 dark:text-gray-400">
 							Multi MFE React v1 &mdash; 전체 리모트 앱 현황 및 연결 상태를 확인합니다.
 						</p>

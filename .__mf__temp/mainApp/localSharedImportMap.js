@@ -14,6 +14,11 @@
             return pkg;
         }
       ,
+        "i18next": async () => {
+          let pkg = await import("__mf__virtual/mainApp__prebuild__i18next__prebuild__.js");
+            return pkg;
+        }
+      ,
         "react": async () => {
           let pkg = await import("__mf__virtual/mainApp__prebuild__react__prebuild__.js");
             return pkg;
@@ -26,6 +31,11 @@
       ,
         "react-helmet-async": async () => {
           let pkg = await import("__mf__virtual/mainApp__prebuild__react_mf_2_helmet_mf_2_async__prebuild__.js");
+            return pkg;
+        }
+      ,
+        "react-i18next": async () => {
+          let pkg = await import("__mf__virtual/mainApp__prebuild__react_mf_2_i18next__prebuild__.js");
             return pkg;
         }
       ,
@@ -97,6 +107,38 @@
             shareConfig: {
               singleton: true,
               requiredVersion: "^5.95.2",
+              
+            }
+          }
+        ,
+          "i18next": {
+            name: "i18next",
+            version: "26.0.0",
+            scope: ["default"],
+            loaded: false,
+            from: "mainApp",
+            async get () {
+              if (false) {
+                throw new Error(`[Module Federation] Shared module '${"i18next"}' must be provided by host`);
+              }
+              usedShared["i18next"].loaded = true
+              const {"i18next": pkgDynamicImport} = importMap
+              const res = await pkgDynamicImport()
+              const exportModule = false && "i18next" === "react"
+                ? (res?.default ?? res)
+                : {...res}
+              // All npm packages pre-built by vite will be converted to esm
+              Object.defineProperty(exportModule, "__esModule", {
+                value: true,
+                enumerable: false
+              })
+              return function () {
+                return exportModule
+              }
+            },
+            shareConfig: {
+              singleton: true,
+              requiredVersion: "^26.0.0",
               
             }
           }
@@ -193,6 +235,38 @@
             shareConfig: {
               singleton: true,
               requiredVersion: "^3.0.0",
+              
+            }
+          }
+        ,
+          "react-i18next": {
+            name: "react-i18next",
+            version: "17.0.0",
+            scope: ["default"],
+            loaded: false,
+            from: "mainApp",
+            async get () {
+              if (false) {
+                throw new Error(`[Module Federation] Shared module '${"react-i18next"}' must be provided by host`);
+              }
+              usedShared["react-i18next"].loaded = true
+              const {"react-i18next": pkgDynamicImport} = importMap
+              const res = await pkgDynamicImport()
+              const exportModule = false && "react-i18next" === "react"
+                ? (res?.default ?? res)
+                : {...res}
+              // All npm packages pre-built by vite will be converted to esm
+              Object.defineProperty(exportModule, "__esModule", {
+                value: true,
+                enumerable: false
+              })
+              return function () {
+                return exportModule
+              }
+            },
+            shareConfig: {
+              singleton: true,
+              requiredVersion: "^17.0.0",
               
             }
           }

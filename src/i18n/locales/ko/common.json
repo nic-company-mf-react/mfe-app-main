@@ -1,0 +1,17 @@
+{
+	"btn.confirm": "확인",
+	"btn.cancel": "취소",
+	"btn.close": "닫기",
+	"btn.save": "저장",
+	"btn.edit": "수정",
+	"btn.delete": "삭제",
+	"btn.back": "뒤로",
+	"btn.login": "로그인",
+	"btn.logout": "로그아웃",
+	"error.network": "네트워크 오류가 발생했습니다.",
+	"error.timeout": "요청 시간이 초과되었습니다.",
+	"error.unauthorized": "인증이 필요합니다.",
+	"error.unknown": "알 수 없는 오류가 발생했습니다.",
+	"label.loading": "로딩 중...",
+	"label.noData": "데이터가 없습니다."
+}

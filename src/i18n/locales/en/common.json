@@ -1,0 +1,17 @@
+{
+	"btn.confirm": "Confirm",
+	"btn.cancel": "Cancel",
+	"btn.close": "Close",
+	"btn.save": "Save",
+	"btn.edit": "Edit",
+	"btn.delete": "Delete",
+	"btn.back": "Back",
+	"btn.login": "Login",
+	"btn.logout": "Logout",
+	"error.network": "A network error occurred.",
+	"error.timeout": "The request timed out.",
+	"error.unauthorized": "Authentication required.",
+	"error.unknown": "An unknown error occurred.",
+	"label.loading": "Loading...",
+	"label.noData": "No data available."
+}

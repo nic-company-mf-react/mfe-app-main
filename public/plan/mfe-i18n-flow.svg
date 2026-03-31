@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 980" width="1120" height="980"
+     font-family="'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',Arial,sans-serif">
+
+  <!-- ══════════════════════════════════════════
+       DEFS - 맨 위에 선언해야 모든 뷰어에서 정상 동작
+       ══════════════════════════════════════════ -->
+  <defs>
+    <filter id="dropshadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#00000033"/>
+    </filter>
+    <marker id="arr" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#64748b"/>
+    </marker>
+    <marker id="arrOrange" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#f59e0b"/>
+    </marker>
+    <marker id="arrPurple" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#818cf8"/>
+    </marker>
+    <marker id="arrBlue" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#3b82f6"/>
+    </marker>
+  </defs>
+
+  <!-- ══ 배경 ══ -->
+  <rect width="1120" height="980" fill="#f1f5f9" rx="14"/>
+
+  <!-- ══ 타이틀 ══ -->
+  <rect x="20" y="14" width="1080" height="58" rx="10" fill="#0f172a"/>
+  <text x="560" y="40" text-anchor="middle" font-size="20" font-weight="bold" fill="#f8fafc">MFE i18n 다국어 지원 - 전체 동작 흐름도</text>
+  <text x="560" y="60" text-anchor="middle" font-size="11" fill="#94a3b8">i18next + react-i18next  ·  Module Federation Singleton 공유  ·  네임스페이스 분리</text>
+
+  <!-- ══════════════════════════════════════════
+       STEP 1 : 브라우저 접속
+       ══════════════════════════════════════════ -->
+  <rect x="60" y="90" width="180" height="58" rx="29" fill="#3b82f6" filter="url(#dropshadow)"/>
+  <text x="150" y="115" text-anchor="middle" font-size="14" font-weight="bold" fill="white">브라우저 접속</text>
+  <text x="150" y="133" text-anchor="middle" font-size="10" fill="#bfdbfe">index.html 로드</text>
+
+  <!-- 아래 화살표 -->
+  <line x1="150" y1="148" x2="150" y2="175" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- ══════════════════════════════════════════
+       STEP 2 : LanguageDetector
+       ══════════════════════════════════════════ -->
+  <rect x="60" y="176" width="180" height="58" rx="8" fill="#7c3aed"/>
+  <text x="150" y="200" text-anchor="middle" font-size="12" font-weight="bold" fill="white">LanguageDetector</text>
+  <text x="150" y="215" text-anchor="middle" font-size="9" fill="#ddd6fe">브라우저 언어 자동 감지</text>
+  <text x="150" y="228" text-anchor="middle" font-size="9" fill="#ddd6fe">localStorage / navigator</text>
+
+  <!-- 아래 화살표 -->
+  <line x1="150" y1="234" x2="150" y2="262" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- ══════════════════════════════════════════
+       STEP 3 : Bootstrap.tsx — i18n.init()
+       ══════════════════════════════════════════ -->
+  <rect x="30" y="262" width="580" height="118" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <rect x="30" y="262" width="580" height="24" rx="10" fill="#f0fdf4"/>
+  <rect x="30" y="274" width="580" height="12" fill="#f0fdf4"/>
+  <text x="320" y="279" text-anchor="middle" font-size="12" font-weight="bold" fill="#14532d">[ STEP 3 ]  Bootstrap.tsx — i18n.init()</text>
+
+  <!-- Import 박스 -->
+  <rect x="46" y="292" width="168" height="76" rx="6" fill="#fef9c3" stroke="#fde047" stroke-width="1.2"/>
+  <text x="130" y="310" text-anchor="middle" font-size="10" font-weight="bold" fill="#713f12">① Import</text>
+  <text x="130" y="324" text-anchor="middle" font-size="9" fill="#78350f">i18n (mfe-lib-shared)</text>
+  <text x="130" y="337" text-anchor="middle" font-size="9" fill="#78350f">HttpBackend plugin</text>
+  <text x="130" y="350" text-anchor="middle" font-size="9" fill="#78350f">LanguageDetector plugin</text>
+  <text x="130" y="362" text-anchor="middle" font-size="8" fill="#92400e">@nic/mfe-lib-shared/i18n</text>
+
+  <!-- Plugins 등록 박스 -->
+  <rect x="230" y="292" width="168" height="76" rx="6" fill="#dcfce7" stroke="#86efac" stroke-width="1.2"/>
+  <text x="314" y="310" text-anchor="middle" font-size="10" font-weight="bold" fill="#14532d">② Plugins 등록</text>
+  <text x="314" y="324" text-anchor="middle" font-size="9" fill="#166534">i18n.use(HttpBackend)</text>
+  <text x="314" y="337" text-anchor="middle" font-size="9" fill="#166534">i18n.use(LanguageDetector)</text>
+  <text x="314" y="350" text-anchor="middle" font-size="9" fill="#166534">ns: ['common', 'main']</text>
+  <text x="314" y="362" text-anchor="middle" font-size="8" fill="#166534">defaultNS: 'common'</text>
+
+  <!-- init() 옵션 박스 -->
+  <rect x="414" y="292" width="180" height="76" rx="6" fill="#ede9fe" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="504" y="310" text-anchor="middle" font-size="10" font-weight="bold" fill="#4c1d95">③ init() 옵션</text>
+  <text x="504" y="324" text-anchor="middle" font-size="9" fill="#5b21b6">fallbackLng: 'ko'</text>
+  <text x="504" y="337" text-anchor="middle" font-size="9" fill="#5b21b6">backend.loadPath:</text>
+  <text x="504" y="349" text-anchor="middle" font-size="8.5" fill="#5b21b6">/locales/{lng}/{ns}.json</text>
+  <text x="504" y="362" text-anchor="middle" font-size="8" fill="#7c3aed">.then() → React 렌더 시작</text>
+
+  <!-- Bootstrap → mfe-lib-shared -->
+  <line x1="320" y1="380" x2="320" y2="406" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- ══════════════════════════════════════════
+       HTTP Backend → public/locales 옆 박스
+       ══════════════════════════════════════════ -->
+  <line x1="610" y1="320" x2="706" y2="320" stroke="#f59e0b" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrOrange)"/>
+  <text x="658" y="312" text-anchor="middle" font-size="9" fill="#b45309">HTTP GET</text>
+  <text x="658" y="334" text-anchor="middle" font-size="8" fill="#b45309">비동기 로딩</text>
+
+  <rect x="706" y="268" width="214" height="160" rx="10" fill="#fffbeb" stroke="#fcd34d" stroke-width="1.5"/>
+  <text x="813" y="288" text-anchor="middle" font-size="12" font-weight="bold" fill="#92400e">public/locales/</text>
+  <text x="813" y="303" text-anchor="middle" font-size="9" fill="#b45309">i18next-http-backend 처리</text>
+
+  <rect x="722" y="310" width="86" height="16" rx="4" fill="#fde68a"/>
+  <text x="765" y="322" text-anchor="middle" font-size="9" fill="#78350f">ko/</text>
+  <rect x="722" y="330" width="180" height="13" rx="3" fill="#fef3c7"/>
+  <text x="812" y="340" text-anchor="middle" font-size="8.5" fill="#92400e">common.json · main.json</text>
+
+  <rect x="722" y="348" width="86" height="16" rx="4" fill="#fde68a"/>
+  <text x="765" y="360" text-anchor="middle" font-size="9" fill="#78350f">en/</text>
+  <rect x="722" y="368" width="180" height="13" rx="3" fill="#fef3c7"/>
+  <text x="812" y="378" text-anchor="middle" font-size="8.5" fill="#92400e">common.json · main.json</text>
+
+  <text x="813" y="402" text-anchor="middle" font-size="8.5" fill="#b45309">네임스페이스별 JSON 로딩</text>
+  <text x="813" y="416" text-anchor="middle" font-size="8.5" fill="#b45309">common / main</text>
+
+  <!-- locales → mfe-lib-shared (번역 리소스 주입) -->
+  <line x1="706" y1="400" x2="502" y2="432" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrOrange)"/>
+  <text x="612" y="406" text-anchor="middle" font-size="8" fill="#b45309">번역 리소스 주입</text>
+
+  <!-- ══════════════════════════════════════════
+       STEP 4 : mfe-lib-shared i18n Singleton
+       ══════════════════════════════════════════ -->
+  <rect x="172" y="406" width="320" height="80" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1.5" filter="url(#dropshadow)"/>
+  <text x="332" y="428" text-anchor="middle" font-size="12" font-weight="bold" fill="#f8fafc">mfe-lib-shared  /  i18n-instance.ts</text>
+  <text x="332" y="444" text-anchor="middle" font-size="9.5" fill="#94a3b8">i18next.createInstance()  →  Singleton export</text>
+  <text x="332" y="460" text-anchor="middle" font-size="9" fill="#64748b">Module Federation: singleton: true, requiredVersion 고정</text>
+  <text x="332" y="474" text-anchor="middle" font-size="8.5" fill="#475569">I18nProvider.tsx  ·  index.ts (re-export)</text>
+
+  <!-- mfe-lib-shared → React 렌더 -->
+  <line x1="332" y1="486" x2="332" y2="514" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="360" y="504" font-size="8.5" fill="#64748b">init() 완료</text>
+
+  <!-- ══════════════════════════════════════════
+       STEP 5 : mfe-app-main React 렌더링
+       ══════════════════════════════════════════ -->
+  <rect x="30" y="514" width="580" height="104" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <rect x="30" y="514" width="580" height="24" rx="10" fill="#f0f9ff"/>
+  <rect x="30" y="526" width="580" height="12" fill="#f0f9ff"/>
+  <text x="320" y="531" text-anchor="middle" font-size="12" font-weight="bold" fill="#0c4a6e">[ STEP 5 ]  mfe-app-main — React 렌더링</text>
+
+  <!-- createRoot -->
+  <rect x="46" y="544" width="155" height="60" rx="6" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.2"/>
+  <text x="124" y="562" text-anchor="middle" font-size="10" font-weight="bold" fill="#064e3b">createRoot().render()</text>
+  <text x="124" y="576" text-anchor="middle" font-size="8.5" fill="#065f46">React.StrictMode</text>
+  <text x="124" y="589" text-anchor="middle" font-size="8.5" fill="#065f46">초기화 완료 후 마운트</text>
+  <text x="124" y="600" text-anchor="middle" font-size="8" fill="#047857">순서 보장됨</text>
+
+  <!-- AppProviders -->
+  <rect x="216" y="544" width="155" height="60" rx="6" fill="#f0f9ff" stroke="#7dd3fc" stroke-width="1.2"/>
+  <text x="294" y="562" text-anchor="middle" font-size="10" font-weight="bold" fill="#0c4a6e">AppProviders.tsx</text>
+  <text x="294" y="576" text-anchor="middle" font-size="8.5" fill="#075985">ThemeProvider</text>
+  <text x="294" y="589" text-anchor="middle" font-size="8.5" fill="#075985">I18nProvider 래핑</text>
+  <text x="294" y="600" text-anchor="middle" font-size="8" fill="#0369a1">HelmetProvider · QueryClient</text>
+
+  <!-- I18nextProvider -->
+  <rect x="386" y="544" width="205" height="60" rx="6" fill="#fdf4ff" stroke="#d8b4fe" stroke-width="1.2"/>
+  <text x="489" y="562" text-anchor="middle" font-size="10" font-weight="bold" fill="#4a1d96">I18nextProvider</text>
+  <text x="489" y="576" text-anchor="middle" font-size="8.5" fill="#6d28d9">공유 i18n 인스턴스 주입</text>
+  <text x="489" y="589" text-anchor="middle" font-size="8.5" fill="#6d28d9">모든 하위 컴포넌트 접근 가능</text>
+  <text x="489" y="600" text-anchor="middle" font-size="8" fill="#7c3aed">useTranslation() 훅 사용 가능</text>
+
+  <!-- React 렌더 → remote1 -->
+  <line x1="320" y1="618" x2="320" y2="646" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- ══════════════════════════════════════════
+       Module Federation 공유 설정 (우측)
+       ══════════════════════════════════════════ -->
+  <rect x="706" y="514" width="374" height="104" rx="10" fill="#1e1b4b" stroke="#4338ca" stroke-width="1.5"/>
+  <text x="893" y="536" text-anchor="middle" font-size="12" font-weight="bold" fill="#e0e7ff">Module Federation  shared 설정</text>
+  <text x="893" y="552" text-anchor="middle" font-size="10" fill="#a5b4fc">singleton: true  →  하나의 인스턴스만 존재</text>
+
+  <rect x="722" y="560" width="156" height="44" rx="6" fill="#312e81"/>
+  <text x="800" y="578" text-anchor="middle" font-size="9.5" fill="#c7d2fe">i18next</text>
+  <text x="800" y="594" text-anchor="middle" font-size="8.5" fill="#818cf8">requiredVersion: ^24.0.0</text>
+
+  <rect x="892" y="560" width="172" height="44" rx="6" fill="#312e81"/>
+  <text x="978" y="578" text-anchor="middle" font-size="9.5" fill="#c7d2fe">react-i18next</text>
+  <text x="978" y="594" text-anchor="middle" font-size="8.5" fill="#818cf8">requiredVersion: ^15.0.0</text>
+
+  <!-- MF → remote1 -->
+  <line x1="893" y1="618" x2="700" y2="694" stroke="#818cf8" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arrPurple)"/>
+  <text x="820" y="644" text-anchor="middle" font-size="8.5" fill="#818cf8">동일 인스턴스 공유</text>
+
+  <!-- ══════════════════════════════════════════
+       STEP 6 : mfe-app-remote1
+       ══════════════════════════════════════════ -->
+  <rect x="30" y="646" width="580" height="120" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <rect x="30" y="646" width="580" height="24" rx="10" fill="#fff7ed"/>
+  <rect x="30" y="658" width="580" height="12" fill="#fff7ed"/>
+  <text x="320" y="663" text-anchor="middle" font-size="12" font-weight="bold" fill="#7c2d12">[ STEP 6 ]  mfe-app-remote1 — Remote1App.tsx</text>
+
+  <!-- 번들 내장 번역 -->
+  <rect x="46" y="676" width="172" height="76" rx="6" fill="#fff7ed" stroke="#fdba74" stroke-width="1.2"/>
+  <text x="132" y="694" text-anchor="middle" font-size="10" font-weight="bold" fill="#7c2d12">번들 내장 번역 파일</text>
+  <text x="132" y="708" text-anchor="middle" font-size="8.5" fill="#9a3412">src/locales/ko/remote1.json</text>
+  <text x="132" y="720" text-anchor="middle" font-size="8.5" fill="#9a3412">src/locales/en/remote1.json</text>
+  <text x="132" y="734" text-anchor="middle" font-size="8" fill="#b45309">빌드 번들 포함</text>
+  <text x="132" y="746" text-anchor="middle" font-size="8" fill="#b45309">CORS 문제 회피</text>
+
+  <!-- addResourceBundle -->
+  <rect x="234" y="676" width="178" height="76" rx="6" fill="#fff1f2" stroke="#fda4af" stroke-width="1.2"/>
+  <text x="323" y="694" text-anchor="middle" font-size="10" font-weight="bold" fill="#881337">네임스페이스 주입</text>
+  <text x="323" y="708" text-anchor="middle" font-size="8.5" fill="#9f1239">i18n.addResourceBundle(</text>
+  <text x="323" y="720" text-anchor="middle" font-size="8.5" fill="#9f1239">'ko', 'remote1', { ... })</text>
+  <text x="323" y="734" text-anchor="middle" font-size="8.5" fill="#9f1239">'en', 'remote1', { ... })</text>
+  <text x="323" y="746" text-anchor="middle" font-size="8" fill="#be185d">마운트 시 1회 실행</text>
+
+  <!-- useTranslation 사용 -->
+  <rect x="428" y="676" width="164" height="76" rx="6" fill="#f0fdf4" stroke="#86efac" stroke-width="1.2"/>
+  <text x="510" y="694" text-anchor="middle" font-size="10" font-weight="bold" fill="#14532d">컴포넌트 사용</text>
+  <text x="510" y="708" text-anchor="middle" font-size="8.5" fill="#166534">useTranslation('remote1')</text>
+  <text x="510" y="720" text-anchor="middle" font-size="8.5" fill="#166534">t('키') 호출</text>
+  <text x="510" y="734" text-anchor="middle" font-size="8.5" fill="#166534">공유 인스턴스 참조</text>
+  <text x="510" y="746" text-anchor="middle" font-size="8" fill="#047857">네임스페이스: remote1</text>
+
+  <!-- remote1 → 언어 전환 -->
+  <line x1="320" y1="766" x2="320" y2="794" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- ══════════════════════════════════════════
+       STEP 7 : 런타임 언어 전환
+       ══════════════════════════════════════════ -->
+  <rect x="30" y="794" width="660" height="112" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <rect x="30" y="794" width="660" height="24" rx="10" fill="#fefce8"/>
+  <rect x="30" y="806" width="660" height="12" fill="#fefce8"/>
+  <text x="360" y="811" text-anchor="middle" font-size="12" font-weight="bold" fill="#713f12">[ STEP 7 ]  런타임 언어 전환 — i18n.changeLanguage('en')</text>
+
+  <!-- 언어 선택 UI -->
+  <rect x="46" y="824" width="145" height="68" rx="6" fill="#f0f9ff" stroke="#7dd3fc" stroke-width="1.2"/>
+  <text x="119" y="842" text-anchor="middle" font-size="9" font-weight="bold" fill="#0c4a6e">언어 선택 UI</text>
+  <text x="119" y="856" text-anchor="middle" font-size="8.5" fill="#075985">버튼 클릭 이벤트</text>
+  <text x="119" y="869" text-anchor="middle" font-size="8" fill="#075985">i18n.changeLanguage(</text>
+  <text x="119" y="881" text-anchor="middle" font-size="8" fill="#0369a1">'ko' | 'en')</text>
+
+  <!-- Singleton 전파 -->
+  <rect x="206" y="824" width="145" height="68" rx="6" fill="#fdf4ff" stroke="#d8b4fe" stroke-width="1.2"/>
+  <text x="279" y="842" text-anchor="middle" font-size="9" font-weight="bold" fill="#4a1d96">Singleton 전파</text>
+  <text x="279" y="856" text-anchor="middle" font-size="8.5" fill="#6d28d9">Host + Remote 동시</text>
+  <text x="279" y="869" text-anchor="middle" font-size="8.5" fill="#6d28d9">동일 인스턴스 반응</text>
+  <text x="279" y="881" text-anchor="middle" font-size="8" fill="#7c3aed">별도 설정 불필요</text>
+
+  <!-- Re-render -->
+  <rect x="366" y="824" width="145" height="68" rx="6" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.2"/>
+  <text x="439" y="842" text-anchor="middle" font-size="9" font-weight="bold" fill="#064e3b">Re-render</text>
+  <text x="439" y="856" text-anchor="middle" font-size="8.5" fill="#065f46">react-i18next 구독</text>
+  <text x="439" y="869" text-anchor="middle" font-size="8.5" fill="#065f46">전체 앱 UI 갱신</text>
+  <text x="439" y="881" text-anchor="middle" font-size="8" fill="#047857">자동 재렌더링</text>
+
+  <!-- 새 번역 로딩 -->
+  <rect x="526" y="824" width="146" height="68" rx="6" fill="#fffbeb" stroke="#fcd34d" stroke-width="1.2"/>
+  <text x="599" y="842" text-anchor="middle" font-size="9" font-weight="bold" fill="#78350f">새 번역 로딩</text>
+  <text x="599" y="856" text-anchor="middle" font-size="8.5" fill="#92400e">미로드 NS → HTTP</text>
+  <text x="599" y="869" text-anchor="middle" font-size="8.5" fill="#92400e">캐시 히트 시 스킵</text>
+  <text x="599" y="881" text-anchor="middle" font-size="8" fill="#b45309">localStorage 저장</text>
+
+  <!-- ══════════════════════════════════════════
+       범례 / 적용 순서 박스 (우측 하단)
+       ══════════════════════════════════════════ -->
+  <rect x="706" y="646" width="374" height="260" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="893" y="668" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e293b">범례 및 적용 순서</text>
+  <line x1="722" y1="676" x2="1062" y2="676" stroke="#e2e8f0" stroke-width="1.2"/>
+
+  <!-- 순서 -->
+  <circle cx="732" cy="694" r="11" fill="#3b82f6"/>
+  <text x="732" y="698" text-anchor="middle" font-size="9" font-weight="bold" fill="white">1</text>
+  <text x="750" y="698" font-size="10" fill="#334155">mfe-lib-shared 수정 및 빌드</text>
+
+  <circle cx="732" cy="718" r="11" fill="#0ea5e9"/>
+  <text x="732" y="722" text-anchor="middle" font-size="9" font-weight="bold" fill="white">2</text>
+  <text x="750" y="722" font-size="10" fill="#334155">mfe-app-main 패키지 설치 및 설정</text>
+
+  <circle cx="732" cy="742" r="11" fill="#8b5cf6"/>
+  <text x="732" y="746" text-anchor="middle" font-size="9" font-weight="bold" fill="white">3</text>
+  <text x="750" y="746" font-size="10" fill="#334155">mfe-app-remote1 패키지 설치 및 설정</text>
+
+  <line x1="722" y1="760" x2="1062" y2="760" stroke="#e2e8f0" stroke-width="1.2"/>
+  <text x="730" y="778" font-size="10" font-weight="bold" fill="#475569">핵심 포인트</text>
+
+  <circle cx="732" cy="796" r="5" fill="#f59e0b"/>
+  <text x="744" y="799" font-size="9" fill="#334155">번역파일 비동기 로딩 완료 후 React 렌더</text>
+
+  <circle cx="732" cy="816" r="5" fill="#ec4899"/>
+  <text x="744" y="819" font-size="9" fill="#334155">MF singleton으로 i18n 인스턴스 단일 공유</text>
+
+  <circle cx="732" cy="836" r="5" fill="#10b981"/>
+  <text x="744" y="839" font-size="9" fill="#334155">remote1 번역은 번들 내장 → CORS 회피</text>
+
+  <circle cx="732" cy="856" r="5" fill="#6366f1"/>
+  <text x="744" y="859" font-size="9" fill="#334155">언어 전환 시 Host + Remote 동시 갱신</text>
+
+  <circle cx="732" cy="876" r="5" fill="#14b8a6"/>
+  <text x="744" y="879" font-size="9" fill="#334155">네임스페이스: common / main / remote1</text>
+
+  <!-- 화살표 범례 -->
+  <line x1="722" y1="892" x2="1062" y2="892" stroke="#e2e8f0" stroke-width="1.2"/>
+  <line x1="730" y1="906" x2="766" y2="906" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="775" y="910" font-size="9" fill="#64748b">동기 흐름</text>
+  <line x1="860" y1="906" x2="896" y2="906" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrOrange)"/>
+  <text x="905" y="910" font-size="9" fill="#b45309">HTTP 비동기</text>
+
+</svg>

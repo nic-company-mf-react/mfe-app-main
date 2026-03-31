@@ -32,6 +32,8 @@ export default defineConfig(({ mode }) => {
 					'@tanstack/react-query': { singleton: true, requiredVersion: '^5.95.2' },
 					'react-helmet-async': { singleton: true, requiredVersion: '^3.0.0' },
 					'@nic/mfe-lib-shared': { singleton: true, requiredVersion: '^0.0.0' },
+					i18next: { singleton: true, requiredVersion: '^26.0.0' },
+					'react-i18next': { singleton: true, requiredVersion: '^17.0.0' },
 				},
 			}),
 		],
