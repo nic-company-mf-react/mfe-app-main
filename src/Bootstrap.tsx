@@ -6,15 +6,7 @@ import { initApiConfig } from '@nic/mfe-lib-shared/api';
 import './assets/styles/app.css';
 import App from './App.tsx';
 
-import { i18n } from '@nic/mfe-lib-shared/i18n';
-import LanguageDetector from 'i18next-browser-languagedetector';
-import { AuthBackend } from './i18n/AuthBackend';
-
-// 번들 내장 폴백 번역 — 토큰 없음/서버 장애 시 사용 (src/ 내부 import → JS 번들에 포함)
-import koCommon from './i18n/locales/ko/common.json';
-import koMain from './i18n/locales/ko/main-index.json';
-import enCommon from './i18n/locales/en/common.json';
-import enMain from './i18n/locales/en/main-index.json';
+import { setupI18n } from './i18n/setup';
 
 // host 앱에서만 사용되는 queryConfig
 const queryConfig: QueryClientConfig = {
@@ -48,47 +40,16 @@ initApiConfig(apiConfig);
 
 // 액세스 토큰 getter — 실제 프로젝트의 auth 스토어(zustand, redux 등)와 연결
 // 현재는 localStorage 기준 예시
-const getToken = (): string | null => {
-	return localStorage.getItem('access_token');
-};
+const getToken = (): string | null => localStorage.getItem('access_token');
 
-i18n
-	.use(AuthBackend) // 인증 기반 서버 번역 로딩
-	.use(LanguageDetector) // 브라우저 언어 자동 감지
-	.init({
-		// 번들 내장(resources) + 서버 로딩(backend) 동시 사용 허용하는 핵심 옵션
-		partialBundledLanguages: true,
-		// 번들 내장 폴백: 서버 응답 전 / 장애 시 사용
-		resources: {
-			ko: { common: koCommon, main: koMain },
-			en: { common: enCommon, main: enMain },
-		},
-		ns: ['common', 'main'],
-		defaultNS: 'common',
-		fallbackLng: 'ko',
-		interpolation: {
-			escapeValue: false, // React는 XSS를 자체 처리하므로 불필요
-		},
-		// AuthBackend에 전달되는 옵션
-		backend: {
-			loadPath: '/api/i18n/translations?lng={{lng}}&ns={{ns}}',
-			getToken,
-			cacheTTL: 5 * 60 * 1000, // 5분
-		},
-		// LanguageDetector 옵션
-		detection: {
-			order: ['localStorage', 'navigator'],
-			caches: ['localStorage'],
-			lookupLocalStorage: 'i18n_language', // localStorage 키명
-		},
-	})
-	.then(() => {
-		// i18n 초기화 완료 후 렌더링 — 첫 화면부터 번역 텍스트 정상 표시 보장
-		createRoot(document.getElementById('root')!).render(
-			<StrictMode>
-				<AppProviders queryConfig={queryConfig}>
-					<App />
-				</AppProviders>
-			</StrictMode>,
-		);
-	});
+// i18n 초기화 후 렌더링(다국어 지원)
+setupI18n(getToken).then(() => {
+	// i18n 초기화 완료 후 렌더링 — 첫 화면부터 번역 텍스트 정상 표시 보장
+	createRoot(document.getElementById('root')!).render(
+		<StrictMode>
+			<AppProviders queryConfig={queryConfig}>
+				<App />
+			</AppProviders>
+		</StrictMode>,
+	);
+});
