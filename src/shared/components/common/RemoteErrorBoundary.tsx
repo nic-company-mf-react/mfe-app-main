@@ -1,32 +1,32 @@
 import { Component, type ErrorInfo, type ReactNode } from 'react';
 
 interface RemoteErrorBoundaryProps {
-  children: ReactNode;
-  fallback: ReactNode;
+	children: ReactNode;
+	fallback: ReactNode;
 }
 
 interface RemoteErrorBoundaryPropsState {
-  hasError: boolean;
+	hasError: boolean;
 }
 
 export default class RemoteErrorBoundary extends Component<RemoteErrorBoundaryProps, RemoteErrorBoundaryPropsState> {
-  state: RemoteErrorBoundaryPropsState = { hasError: false };
+	state: RemoteErrorBoundaryPropsState = { hasError: false };
 
-  static getDerivedStateFromError(): RemoteErrorBoundaryPropsState {
-    return { hasError: true };
-  }
+	static getDerivedStateFromError(): RemoteErrorBoundaryPropsState {
+		return { hasError: true };
+	}
 
 	componentDidCatch(error: Error, info: ErrorInfo) {
-    // 에러 로깅 (선택)
-    console.error('[RemoteErrorBoundary]', error, info);
-  }
+		// 에러 로깅 (선택)
+		console.error('[RemoteErrorBoundary]', error, info);
+	}
 
-  render() {
-    if (this.state.hasError) {
-      return this.props.fallback;
-    }
-    return this.props.children;
-  }
+	render() {
+		if (this.state.hasError) {
+			return this.props.fallback;
+		}
+		return this.props.children;
+	}
 }
 
 //-----------------------------------------------------------------
