@@ -8,7 +8,7 @@ import App from './App.tsx';
 
 import { setupI18n } from './i18n/setup';
 
-// host 앱에서만 사용되는 queryConfig
+// host 앱에서만 사용되는 queryConfig 설정정 =================================================================
 const queryConfig: QueryClientConfig = {
 	defaultOptions: {
 		queries: {
@@ -24,24 +24,16 @@ const queryConfig: QueryClientConfig = {
 	},
 };
 
-// host 앱에서 REST API 호출용 API 설정(전역에 저장된 : window.__MF_APP_CONFIG__)
+// host 앱에서 REST API 호출용 API 설정(전역에 저장된 : window.__MF_APP_CONFIG__) =============================
 const apiConfig = {
 	baseURL: import.meta.env.VITE_EXTERNAL_API_BASE_URL2,
 };
 initApiConfig(apiConfig);
 
-//createRoot(document.getElementById('root')!).render(
-//	<StrictMode>
-//		<AppProviders queryConfig={queryConfig}>
-//			<App />
-//		</AppProviders>
-//	</StrictMode>,
-//);
-
+// 다국어 지원을 위한 i18n 초기화 설정정 ======================================================================
 // 액세스 토큰 getter — 실제 프로젝트의 auth 스토어(zustand, redux 등)와 연결
 // 현재는 localStorage 기준 예시
 const getToken = (): string | null => localStorage.getItem('access_token');
-
 // i18n 초기화 후 렌더링(다국어 지원)
 setupI18n(getToken).then(() => {
 	// i18n 초기화 완료 후 렌더링 — 첫 화면부터 번역 텍스트 정상 표시 보장
