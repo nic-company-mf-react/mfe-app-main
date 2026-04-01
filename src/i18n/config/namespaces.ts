@@ -36,7 +36,11 @@ export const FALLBACK_LNG = import.meta.env.VITE_I18N_FALLBACK_LNG ?? 'ko';
 //reloadI18nAfterLogin()에서 i18n.reloadResources() 대신 i18n.reloadResources(undefined, [...AUTH_NAMESPACES])
 //형태로 범위를 좁혀 불필요한 네트워크 요청을 줄일 수 있습니다.
 
-/** 번들에만 의존하는 게스트 화면 NS (서버 재로드 불필요) */
+/**
+ * 게스트 화면(로그인 전)에 필요한 NS 목록.
+ * setupI18n() 초기화 직후 public/locales에서 reloadResources로 강제 로드됩니다.
+ * public/locales fetch 실패 시 번들 내장 번역이 폴백으로 유지됩니다.
+ */
 export const GUEST_NAMESPACES: readonly Namespace[] = ['common'] as const;
 
 /** 로그인 후 서버에서 최신 번역을 로드해야 하는 NS 목록 */

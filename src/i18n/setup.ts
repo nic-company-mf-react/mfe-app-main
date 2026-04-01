@@ -2,7 +2,7 @@
 
 import { i18n } from '@nic/mfe-lib-shared/i18n';
 import LanguageDetector from 'i18next-browser-languagedetector';
-import { AuthBackend } from './AuthBackend';
+import { AuthBackend, type AuthBackendOptions } from './AuthBackend';
 import { i18nConfig } from './config/i18n.config';
 import { AUTH_NAMESPACES, GUEST_NAMESPACES } from './config/namespaces';
 // getToken은 auth 스토어 교체가 가능하도록 주입받음 (DI 패턴)
@@ -17,15 +17,31 @@ export function setupI18n(getToken: () => string | null): Promise<typeof i18n> {
 				getToken, // 실제 토큰 getter 주입
 			},
 		})
-		.then(() => i18n);
+		.then(async () => {
+			console.info(
+				`[i18n] ✅ Initialized (bundle) — language: ${i18n.language}, ` +
+					`namespaces: [${i18n.options.ns}], ` +
+					`publicLoadPath: ${(i18nConfig.backend as AuthBackendOptions).publicLoadPath}`,
+			);
+			// i18next는 번들(resources)에 이미 있는 NS는 backend를 호출하지 않음.
+			// GUEST_NAMESPACES를 명시적으로 재로드하여 public/locales 우선 적용 (선택지 B).
+			// public/locales fetch 실패 시 AuthBackend가 callback(err, false)를 반환하고
+			// i18next는 기존 번들 번역을 그대로 유지하므로 안전함.
+			console.info(`[i18n] 🔄 Reloading guest namespaces from public/locales: [${GUEST_NAMESPACES.join(', ')}]`);
+			await i18n.reloadResources(undefined, [...GUEST_NAMESPACES]);
+			console.info(`[i18n] ✅ Guest namespaces reload complete: [${GUEST_NAMESPACES.join(', ')}]`);
+			return i18n;
+		});
 }
 
 /**
- * 로그인 전 게스트 화면에 필요한 NS만 prefetch합니다.
- * i18n.loadNamespaces()는 현재 감지된 언어를 자동으로 사용하므로 언어 파라미터 불필요.
+ * 게스트 화면 번역을 public/locales에서 강제로 다시 로드합니다.
+ * setupI18n() 내부에서 이미 초기 로드를 수행하므로 일반적으로 수동 호출은 불필요합니다.
+ * 운영 중 public/locales 파일을 교체하고 즉시 반영하고 싶을 때 사용하세요.
+ * (i18n.loadNamespaces 대신 reloadResources를 사용해야 backend가 실제로 호출됨)
  */
 export async function prefetchGuestTranslations(): Promise<void> {
-	await i18n.loadNamespaces([...GUEST_NAMESPACES]);
+	await i18n.reloadResources(undefined, [...GUEST_NAMESPACES]);
 }
 
 /**

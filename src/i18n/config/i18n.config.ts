@@ -23,9 +23,11 @@
  *   detection               — 언어 자동 감지 정책 (detection.config.ts 에서 관리)
  *
  * 환경변수 (.env):
- *   VITE_I18N_LOAD_PATH  — 번역 API 경로 템플릿 ({{lng}}, {{ns}} 치환자 사용)
- *   VITE_I18N_CACHE_TTL  — 번역 캐시 유지 시간(ms), 미설정 시 기본값 5분
- *   VITE_I18N_FALLBACK_LNG — 폴백 언어 코드, 미설정 시 'ko'
+ *   VITE_I18N_LOAD_PATH        — 로그인 후 번역 API 경로 템플릿 ({{lng}}, {{ns}} 치환자 사용)
+ *   VITE_I18N_PUBLIC_LOAD_PATH — 로그인 전 정적 JSON 경로 템플릿 (public/locales/ 서빙 경로)
+ *                                미설정 시 기본값: /locales/{{lng}}/{{ns}}.json
+ *   VITE_I18N_CACHE_TTL        — 번역 캐시 유지 시간(ms), 미설정 시 기본값 5분
+ *   VITE_I18N_FALLBACK_LNG     — 폴백 언어 코드, 미설정 시 'ko'
  */
 
 import type { InitOptions } from 'i18next';
@@ -44,7 +46,9 @@ export const i18nConfig: InitOptions = {
 	},
 	backend: {
 		loadPath: import.meta.env.VITE_I18N_LOAD_PATH ?? '/api/i18n/translations?lng={{lng}}&ns={{ns}}',
+		publicLoadPath: import.meta.env.VITE_I18N_PUBLIC_LOAD_PATH ?? '/locales/{{lng}}/{{ns}}.json',
 		cacheTTL: Number(import.meta.env.VITE_I18N_CACHE_TTL) || 5 * 60 * 1000,
+		retryCount: 1,
 		// getToken은 setup.ts에서 주입 (config는 auth에 의존하지 않음)
 	},
 	detection: detectionConfig,
