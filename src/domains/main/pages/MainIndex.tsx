@@ -1,7 +1,6 @@
 import { Link } from 'react-router';
 
 import { useTranslation } from 'react-i18next';
-import { i18n } from '@nic/mfe-lib-shared/i18n';
 
 import {
 	Layers,
@@ -15,7 +14,6 @@ import {
 	ArrowRight,
 	AlertTriangle,
 } from 'lucide-react';
-import { Button } from '@nic/mfe-lib-shared/components';
 
 type RemoteApp = {
 	id: number;

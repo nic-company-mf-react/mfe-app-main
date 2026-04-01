@@ -10,6 +10,12 @@ export default defineConfig(({ mode }) => {
 
 	return {
 		base: baseUrl,
+		// @nic/mfe-lib-shared 청크가 내부적으로 react-i18next, i18next를 import하므로
+		// Rolldown이 이들을 번들링할 때 식별자 minify 버그로 `import { t } from 'react'`를
+		// 생성합니다. MF shared 또는 peer dep으로 사용되는 패키지는 exclude 처리합니다.
+		optimizeDeps: {
+			exclude: ['@nic/mfe-lib-shared', 'react-i18next', 'i18next'],
+		},
 		plugins: [
 			react(),
 			tailwindcss(), // ← 추가
