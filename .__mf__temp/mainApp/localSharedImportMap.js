@@ -81,7 +81,7 @@
         ,
           "@tanstack/react-query": {
             name: "@tanstack/react-query",
-            version: "5.95.2",
+            version: "5.96.2",
             scope: ["default"],
             loaded: false,
             from: "mainApp",
@@ -106,7 +106,7 @@
             },
             shareConfig: {
               singleton: true,
-              requiredVersion: "^5.95.2",
+              requiredVersion: "^5.96.2",
               
             }
           }
