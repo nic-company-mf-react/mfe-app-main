@@ -37,6 +37,7 @@ import { resources } from './resources';
 
 export const i18nConfig: InitOptions = {
 	partialBundledLanguages: true,
+	load: 'languageOnly', // ← "ko-KR" → "ko" 로 자동 변환
 	resources,
 	ns: [...NAMESPACES],
 	defaultNS: DEFAULT_NS,
