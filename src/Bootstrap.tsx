@@ -5,6 +5,7 @@ import { AppProviders } from '@nic/mfe-lib-shared/components';
 import { initApiConfig } from '@nic/mfe-lib-shared/api';
 import './assets/styles/app.css';
 import App from './App.tsx';
+import { Toaster } from '@nic/mfe-lib-shared/components/ui';
 
 import { setupI18n } from './i18n/setup';
 
@@ -40,6 +41,7 @@ setupI18n(getToken).then(() => {
 	createRoot(document.getElementById('root')!).render(
 		<StrictMode>
 			<AppProviders queryConfig={queryConfig}>
+				<Toaster />
 				<App />
 			</AppProviders>
 		</StrictMode>,
