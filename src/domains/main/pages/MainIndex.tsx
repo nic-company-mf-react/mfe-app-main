@@ -1,7 +1,7 @@
 import { Link } from 'react-router';
 
 import { useTranslation } from 'react-i18next';
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@nic/mfe-lib-shared/components/ui';
+import { Button } from '@nic/mfe-lib-shared/components/ui';
 
 import {
 	Layers,
@@ -14,6 +14,7 @@ import {
 	Network,
 	ArrowRight,
 	AlertTriangle,
+	RedoDot,
 } from 'lucide-react';
 
 type RemoteApp = {
@@ -96,31 +97,7 @@ export default function MainIndex(): React.ReactNode {
 	return (
 		<div className="p-6 space-y-8">
 			<div style={{ width: '100%', height: '300px', backgroundColor: '#ffffff' }}>
-				<Accordion
-					defaultValue={['shipping']}
-					className="max-w-lg"
-				>
-					<AccordionItem value="shipping">
-						<AccordionTrigger>What are your shipping options?</AccordionTrigger>
-						<AccordionContent>
-							We offer standard (5-7 days), express (2-3 days), and overnight shipping. Free shipping on international
-							orders.
-						</AccordionContent>
-					</AccordionItem>
-					<AccordionItem value="returns">
-						<AccordionTrigger>What is your return policy?</AccordionTrigger>
-						<AccordionContent>
-							Returns accepted within 30 days. Items must be unused and in original packaging. Refunds processed within
-							5-7 business days.
-						</AccordionContent>
-					</AccordionItem>
-					<AccordionItem value="support">
-						<AccordionTrigger>How can I contact customer support?</AccordionTrigger>
-						<AccordionContent>
-							Reach us via email, live chat, or phone. We respond within 24 hours during business days.
-						</AccordionContent>
-					</AccordionItem>
-				</Accordion>
+				<Button onClick={() => alert('버튼이 클릭되었습니다!')}>클릭해보세요</Button>
 			</div>
 			{/* 헤더 섹션 */}
 			<div className="flex flex-col gap-2">
