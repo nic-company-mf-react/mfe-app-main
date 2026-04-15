@@ -4,8 +4,8 @@
     import {loadShare} from "@module-federation/runtime";
     const importMap = {
       
-        "@nic/mfe-lib-shared": async () => {
-          let pkg = await import("__mf__virtual/mainApp__prebuild___mf_0_nic_mf_1_mfe_mf_2_lib_mf_2_shared__prebuild__.js");
+        "@axiom/mfe-lib-shared": async () => {
+          let pkg = await import("__mf__virtual/mainApp__prebuild___mf_0_axiom_mf_1_mfe_mf_2_lib_mf_2_shared__prebuild__.js");
             return pkg;
         }
       ,
@@ -47,20 +47,20 @@
     }
       const usedShared = {
       
-          "@nic/mfe-lib-shared": {
-            name: "@nic/mfe-lib-shared",
+          "@axiom/mfe-lib-shared": {
+            name: "@axiom/mfe-lib-shared",
             version: "0.0.0",
             scope: ["default"],
             loaded: false,
             from: "mainApp",
             async get () {
               if (false) {
-                throw new Error(`[Module Federation] Shared module '${"@nic/mfe-lib-shared"}' must be provided by host`);
+                throw new Error(`[Module Federation] Shared module '${"@axiom/mfe-lib-shared"}' must be provided by host`);
               }
-              usedShared["@nic/mfe-lib-shared"].loaded = true
-              const {"@nic/mfe-lib-shared": pkgDynamicImport} = importMap
+              usedShared["@axiom/mfe-lib-shared"].loaded = true
+              const {"@axiom/mfe-lib-shared": pkgDynamicImport} = importMap
               const res = await pkgDynamicImport()
-              const exportModule = false && "@nic/mfe-lib-shared" === "react"
+              const exportModule = false && "@axiom/mfe-lib-shared" === "react"
                 ? (res?.default ?? res)
                 : {...res}
               // All npm packages pre-built by vite will be converted to esm

@@ -1,6 +1,6 @@
 // i18n 초기화 로직
 
-import { i18n } from '@nic/mfe-lib-shared/i18n';
+import { i18n } from '@axiom/mfe-lib-shared/i18n';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { AuthBackend, type AuthBackendOptions } from './AuthBackend';
 import { i18nConfig } from './config/i18n.config';

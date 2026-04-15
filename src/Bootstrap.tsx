@@ -1,8 +1,8 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { type QueryClientConfig } from '@tanstack/react-query';
-import { AppProviders } from '@nic/mfe-lib-shared/components';
-import { initApiConfig } from '@nic/mfe-lib-shared/api';
+import { AppProviders } from '@axiom/mfe-lib-shared/components';
+import { initApiConfig } from '@axiom/mfe-lib-shared/api';
 import './assets/styles/app.css';
 import App from './App.tsx';
 

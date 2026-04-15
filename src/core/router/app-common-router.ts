@@ -1,5 +1,5 @@
 import { createHashRouter, type DOMRouterOpts } from 'react-router';
-import type { TAppRoute } from '@nic/mfe-lib-shared/types';
+import type { TAppRoute } from '@axiom/mfe-lib-shared/types';
 
 export const createAppRouter = (routes: TAppRoute[], opts?: DOMRouterOpts) => {
 	// createBrowserRouter는 서버 설정이 필요 (모든 경로를 index.html로 리다이렉트)하기 때문에 사용하지 않는다.

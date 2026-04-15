@@ -1,12 +1,12 @@
 ---
 name: mfe-app-main 세팅
-overview: 멀티레포 MFE 환경에서 Host 앱인 `mfe-app-main`을 Vite + React.js(TypeScript)로 처음부터 생성하고, `@nic/mfe-lib-shared` 공유 라이브러리를 연동하여 브라우저에서 실행할 수 있는 상태까지 구성한다.
+overview: 멀티레포 MFE 환경에서 Host 앱인 `mfe-app-main`을 Vite + React.js(TypeScript)로 처음부터 생성하고, `@axiom/mfe-lib-shared` 공유 라이브러리를 연동하여 브라우저에서 실행할 수 있는 상태까지 구성한다.
 todos:
   - id: create-vite-app
     content: npm create vite@latest 실행하여 mfe-app-main React TypeScript 프로젝트 생성
     status: pending
   - id: update-package-json
-    content: package.json — name, @nic/mfe-lib-shared 의존성 설정
+    content: package.json — name, @axiom/mfe-lib-shared 의존성 설정
     status: pending
   - id: install-tailwind
     content: Tailwind CSS 및 관련 패키지 설치, vite.config.ts에 플러그인 추가
@@ -39,7 +39,7 @@ isProject: false
 
 ## 현재 상태
 
-- `mfe-lib-shared/` — `@nic/mfe-lib-shared` 패키지 (이미 구성 완료, Vite 기반)
+- `mfe-lib-shared/` — `@axiom/mfe-lib-shared` 패키지 (이미 구성 완료, Vite 기반)
 - `mfe-docs/` — Docusaurus 문서
 - `mfe-app-main/` — **아직 없음 (이번에 생성)**
 
@@ -80,9 +80,9 @@ mfe-app-main/
 
 ```json
 {
-  "name": "@nic/mfe-app-main",
+  "name": "@axiom/mfe-app-main",
   "dependencies": {
-    "@nic/mfe-lib-shared": "file:../mfe-lib-shared"
+    "@axiom/mfe-lib-shared": "file:../mfe-lib-shared"
   }
 }
 ```
@@ -133,7 +133,7 @@ export default defineConfig({
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@nic/mfe-lib-shared": ["../mfe-lib-shared/src/index.ts"]
+      "@axiom/mfe-lib-shared": ["../mfe-lib-shared/src/index.ts"]
     }
   }
 }
@@ -146,13 +146,13 @@ export default defineConfig({
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@nic/mfe-lib-shared": ["../mfe-lib-shared/src/index.ts"]
+      "@axiom/mfe-lib-shared": ["../mfe-lib-shared/src/index.ts"]
     }
   }
 }
 ```
 
-> `@nic/mfe-lib-shared` alias는 `file:` 로컬 링크 개발 시 타입 추론을 돕기 위한 설정이다. npm/git 배포 후에는 제거한다.
+> `@axiom/mfe-lib-shared` alias는 `file:` 로컬 링크 개발 시 타입 추론을 돕기 위한 설정이다. npm/git 배포 후에는 제거한다.
 
 ## 6. `.vscode/settings.json` 생성
 
@@ -211,10 +211,10 @@ VITE_REMOTE_REMOTE2_URL=http://localhost:5175
 @import 'tw-animate-css';
 
 /* 공유 라이브러리 디자인 토큰 + 스타일 */
-@import '@nic/mfe-lib-shared/styles';
+@import '@axiom/mfe-lib-shared/styles';
 
 /* 공유 라이브러리 컴포넌트의 Tailwind 클래스 스캔 */
-@source "../node_modules/@nic/mfe-lib-shared/src/**/*.{ts,tsx}";
+@source "../node_modules/@axiom/mfe-lib-shared/src/**/*.{ts,tsx}";
 ```
 
 ## 9. `src/main.tsx` 수정
@@ -237,7 +237,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 공유 라이브러리 컴포넌트 사용 예시 포함:
 
 ```tsx
-import { Button } from '@nic/mfe-lib-shared/components'
+import { Button } from '@axiom/mfe-lib-shared/components'
 
 function App() {
   return (

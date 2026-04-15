@@ -1,5 +1,5 @@
 {
-	"name": "@nic/mfe-app-main",
+	"name": "@axiom/mfe-app-main",
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",
@@ -26,7 +26,7 @@
 	"devDependencies": {
 		"@eslint/js": "^9.39.4",
 		"@module-federation/vite": "^1.13.5",
-		"@nic/mfe-lib-shared": "file:../mfe-lib-shared",
+		"@axiom/mfe-lib-shared": "file:../mfe-lib-shared",
 		"@tailwindcss/vite": "^4.2.2",
 		"@types/node": "^24.12.0",
 		"@types/react": "^19.2.14",

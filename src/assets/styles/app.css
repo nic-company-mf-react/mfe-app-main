@@ -5,6 +5,6 @@
 /* tw-animate-css 사용 시 */
 @import 'tw-animate-css';
 /* 공유 라이브러리 스타일 (디자인 토큰 + 레이아웃 유틸) */
-@import '@nic/mfe-lib-shared/styles';
+@import '@axiom/mfe-lib-shared/styles';
 /* 사전 컴파일된 컴포넌트 유틸리티 클래스 */
-@import '@nic/mfe-lib-shared/styles/components';
+@import '@axiom/mfe-lib-shared/styles/components';

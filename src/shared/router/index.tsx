@@ -1,4 +1,4 @@
-import type { TAppRoute } from '@nic/mfe-lib-shared/types';
+import type { TAppRoute } from '@axiom/mfe-lib-shared/types';
 
 // root layout 가져오기 -----------
 import RootLayout from '@/shared/components/layout/RootLayout';

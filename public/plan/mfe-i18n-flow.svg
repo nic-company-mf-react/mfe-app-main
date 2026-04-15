@@ -66,7 +66,7 @@
   <text x="130" y="324" text-anchor="middle" font-size="9" fill="#78350f">i18n (mfe-lib-shared)</text>
   <text x="130" y="337" text-anchor="middle" font-size="9" fill="#78350f">HttpBackend plugin</text>
   <text x="130" y="350" text-anchor="middle" font-size="9" fill="#78350f">LanguageDetector plugin</text>
-  <text x="130" y="362" text-anchor="middle" font-size="8" fill="#92400e">@nic/mfe-lib-shared/i18n</text>
+  <text x="130" y="362" text-anchor="middle" font-size="8" fill="#92400e">@axiom/mfe-lib-shared/i18n</text>
 
   <!-- Plugins 등록 박스 -->
   <rect x="230" y="292" width="168" height="76" rx="6" fill="#dcfce7" stroke="#86efac" stroke-width="1.2"/>

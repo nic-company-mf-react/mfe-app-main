@@ -1,7 +1,7 @@
 import { Link } from 'react-router';
 
 import { useTranslation } from 'react-i18next';
-import { Button, toast } from '@nic/mfe-lib-shared/components/ui';
+import { Button, toast } from '@axiom/mfe-lib-shared/components/ui';
 
 import {
 	Layers,

@@ -1,4 +1,4 @@
-import { useTheme } from '@nic/mfe-lib-shared/context';
+import { useTheme } from '@axiom/mfe-lib-shared/context';
 
 export const ThemeToggleButton: React.FC = () => {
 	const { toggleTheme } = useTheme();

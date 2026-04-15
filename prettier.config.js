@@ -1,4 +1,4 @@
-import sharedConfig from '@nic/mfe-lib-shared/config/prettier';
+import sharedConfig from '@axiom/mfe-lib-shared/config/prettier';
 /**
  * @type {import('prettier').Config}
  */
