@@ -21,12 +21,13 @@
 		"react-dom": "^19.2.4",
 		"react-helmet-async": "^3.0.0",
 		"react-i18next": "^17.0.2",
-		"react-router": "^7.13.2"
+		"react-router": "^7.13.2",
+		"zustand": "^5.0.12"
 	},
 	"devDependencies": {
+		"@axiom/mfe-lib-shared": "file:../mfe-lib-shared",
 		"@eslint/js": "^9.39.4",
 		"@module-federation/vite": "^1.13.5",
-		"@axiom/mfe-lib-shared": "file:../mfe-lib-shared",
 		"@tailwindcss/vite": "^4.2.2",
 		"@types/node": "^24.12.0",
 		"@types/react": "^19.2.14",

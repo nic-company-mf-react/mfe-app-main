@@ -43,6 +43,11 @@
           let pkg = await import("__mf__virtual/mainApp__prebuild__react_mf_2_router__prebuild__.js");
             return pkg;
         }
+      ,
+        "zustand": async () => {
+          let pkg = await import("__mf__virtual/mainApp__prebuild__zustand__prebuild__.js");
+            return pkg;
+        }
       
     }
       const usedShared = {
@@ -299,6 +304,38 @@
             shareConfig: {
               singleton: true,
               requiredVersion: "^7.0.0",
+              
+            }
+          }
+        ,
+          "zustand": {
+            name: "zustand",
+            version: "5.0.0",
+            scope: ["default"],
+            loaded: false,
+            from: "mainApp",
+            async get () {
+              if (false) {
+                throw new Error(`[Module Federation] Shared module '${"zustand"}' must be provided by host`);
+              }
+              usedShared["zustand"].loaded = true
+              const {"zustand": pkgDynamicImport} = importMap
+              const res = await pkgDynamicImport()
+              const exportModule = false && "zustand" === "react"
+                ? (res?.default ?? res)
+                : {...res}
+              // All npm packages pre-built by vite will be converted to esm
+              Object.defineProperty(exportModule, "__esModule", {
+                value: true,
+                enumerable: false
+              })
+              return function () {
+                return exportModule
+              }
+            },
+            shareConfig: {
+              singleton: true,
+              requiredVersion: "^5.0.0",
               
             }
           }

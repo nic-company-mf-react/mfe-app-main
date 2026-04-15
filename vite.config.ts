@@ -40,6 +40,10 @@ export default defineConfig(({ mode }) => {
 					'@axiom/mfe-lib-shared': { singleton: true, requiredVersion: '^0.0.0' },
 					i18next: { singleton: true, requiredVersion: '^26.0.0' },
 					'react-i18next': { singleton: true, requiredVersion: '^17.0.0' },
+					zustand: {
+						singleton: true,
+						requiredVersion: '^5.0.0', // package.json과 맞춤
+					},
 				},
 			}),
 		],
