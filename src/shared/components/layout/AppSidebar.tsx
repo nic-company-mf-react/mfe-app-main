@@ -117,7 +117,7 @@ const AppSidebar: React.FC = () => {
 			className={
 				trailPrefix.length === 0
 					? 'mt-2 space-y-1 ml-9'
-					: 'mt-1 space-y-1 border-l border-gray-200 dark:border-gray-700 ml-1 pl-2'
+					: 'mt-1 space-y-1 border-l border-gray-200 dark:border-gray-700 ml-3 pl-1'
 			}
 		>
 			{subItems.map((subItem, i) => {
@@ -162,9 +162,7 @@ const AppSidebar: React.FC = () => {
 				if (!subItem.path) return null;
 				const isSecondDepthLeaf = trailPrefix.length === 0;
 				const showLeafIcon = Boolean(subItem.icon) || isSecondDepthLeaf;
-				const leafIconClass = isActive(subItem.path)
-					? 'text-brand-500'
-					: 'text-gray-500 dark:text-gray-400';
+				const leafIconClass = isActive(subItem.path) ? 'text-brand-500' : 'text-gray-500 dark:text-gray-400';
 				return (
 					<li key={`${subItem.path}-${trail.join('-')}`}>
 						<Link
@@ -183,7 +181,10 @@ const AppSidebar: React.FC = () => {
 											{subItem.icon}
 										</span>
 									) : (
-										<FileCode className={`h-4 w-4 shrink-0 ${leafIconClass}`} aria-hidden />
+										<FileCode
+											className={`h-4 w-4 shrink-0 ${leafIconClass}`}
+											aria-hidden
+										/>
 									))}
 								<span className="truncate">{subItem.name}</span>
 							</span>
