@@ -38,6 +38,7 @@ export const navItems: NavItem[] = [
 					{ name: 'useClientState2', path: '/example/use-client-state-2' },
 				],
 			},
+			{ name: 'useApi', path: '/example/use-api' },
 		],
 	},
 ];
