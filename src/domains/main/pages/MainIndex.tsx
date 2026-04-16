@@ -1,7 +1,6 @@
 import { Link } from 'react-router';
 
 import { useTranslation } from 'react-i18next';
-import { Button, toast } from '@axiom/mfe-lib-shared/components/ui';
 
 import {
 	Layers,
@@ -14,7 +13,6 @@ import {
 	Network,
 	ArrowRight,
 	AlertTriangle,
-	RedoDot,
 } from 'lucide-react';
 
 type RemoteApp = {
@@ -96,9 +94,6 @@ export default function MainIndex(): React.ReactNode {
 
 	return (
 		<div className="p-6 space-y-8">
-			<div style={{ width: '100%', height: '300px', backgroundColor: '#ffffff' }}>
-				<Button onClick={() => toast('toast 가 오픈!!!', { position: 'bottom-center' })}>클릭해보세요</Button>
-			</div>
 			{/* 헤더 섹션 */}
 			<div className="flex flex-col gap-2">
 				<div className="flex items-center gap-3">
