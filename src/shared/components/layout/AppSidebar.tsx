@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router';
-import { ChevronDownIcon, Folder, FolderOpen } from 'lucide-react';
+import { ChevronDownIcon, File, Folder, FolderOpen } from 'lucide-react';
 import { useSidebar } from '@/shared/context/layout/SidebarContext';
 import { navItems, othersItems, type NavItem, type NavSubItem } from '@/shared/config/navigation';
 
@@ -166,6 +166,7 @@ const AppSidebar: React.FC = () => {
 					);
 				}
 				if (!subItem.path) return null;
+				const isSecondDepthLeaf = trailPrefix.length === 0;
 				return (
 					<li key={`${subItem.path}-${trail.join('-')}`}>
 						<Link
@@ -174,7 +175,19 @@ const AppSidebar: React.FC = () => {
 								isActive(subItem.path) ? 'menu-dropdown-item-active' : 'menu-dropdown-item-inactive'
 							}`}
 						>
-							{subItem.name}
+							<span className="menu-item-text flex min-w-0 items-center gap-2">
+								{isSecondDepthLeaf && (
+									<File
+										className={`h-4 w-4 shrink-0 ${
+											isActive(subItem.path)
+												? 'text-brand-500'
+												: 'text-gray-500 dark:text-gray-400'
+										}`}
+										aria-hidden
+									/>
+								)}
+								<span className="truncate">{subItem.name}</span>
+							</span>
 							<span className="flex items-center gap-1 ml-auto">
 								{subItem.new && (
 									<span

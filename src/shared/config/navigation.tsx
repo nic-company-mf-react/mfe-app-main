@@ -31,6 +31,7 @@ export const navItems: NavItem[] = [
 		icon: <SquareDashedBottomCode />,
 		name: 'Example',
 		subItems: [
+			{ name: 'useApi', path: '/example/use-api' },
 			{
 				name: 'useClientState예제',
 				subItems: [
@@ -38,7 +39,6 @@ export const navItems: NavItem[] = [
 					{ name: 'useClientState2', path: '/example/use-client-state-2' },
 				],
 			},
-			{ name: 'useApi', path: '/example/use-api' },
 		],
 	},
 ];
