@@ -4,6 +4,7 @@ import type { TAppRoute } from '@axiom/mfe-lib-shared/types';
 import ExUseClientState1 from '../pages/use-client-state/ExUseClientState1';
 import ExUseClientState2 from '../pages/use-client-state/ExUseClientState2';
 import ExUseApi from '../pages/use-api/ExUseApi';
+import ExButton from '../pages/component-button/ExButton';
 
 const routes: TAppRoute[] = [
 	{
@@ -20,6 +21,11 @@ const routes: TAppRoute[] = [
 		path: '/example/use-api',
 		element: <ExUseApi />,
 		name: 'ExUseApi',
+	},
+	{
+		path: '/example/component-button',
+		element: <ExButton />,
+		name: 'ExButton',
 	},
 ];
 

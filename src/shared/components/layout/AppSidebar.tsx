@@ -161,6 +161,10 @@ const AppSidebar: React.FC = () => {
 				}
 				if (!subItem.path) return null;
 				const isSecondDepthLeaf = trailPrefix.length === 0;
+				const showLeafIcon = Boolean(subItem.icon) || isSecondDepthLeaf;
+				const leafIconClass = isActive(subItem.path)
+					? 'text-brand-500'
+					: 'text-gray-500 dark:text-gray-400';
 				return (
 					<li key={`${subItem.path}-${trail.join('-')}`}>
 						<Link
@@ -170,14 +174,17 @@ const AppSidebar: React.FC = () => {
 							}`}
 						>
 							<span className="menu-item-text flex min-w-0 items-center gap-2">
-								{isSecondDepthLeaf && (
-									<FileCode
-										className={`h-4 w-4 shrink-0 ${
-											isActive(subItem.path) ? 'text-brand-500' : 'text-gray-500 dark:text-gray-400'
-										}`}
-										aria-hidden
-									/>
-								)}
+								{showLeafIcon &&
+									(subItem.icon ? (
+										<span
+											className={`inline-flex shrink-0 items-center justify-center [&>svg]:h-4 [&>svg]:w-4 [&>svg]:shrink-0 ${leafIconClass}`}
+											aria-hidden
+										>
+											{subItem.icon}
+										</span>
+									) : (
+										<FileCode className={`h-4 w-4 shrink-0 ${leafIconClass}`} aria-hidden />
+									))}
 								<span className="truncate">{subItem.name}</span>
 							</span>
 							<span className="flex items-center gap-1 ml-auto">
