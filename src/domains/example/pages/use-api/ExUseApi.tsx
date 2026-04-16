@@ -1,30 +1,28 @@
 import { useApi } from '@axiom/mfe-lib-shared/hooks';
 import { Cable, FileJson, Globe, KeyRound, RefreshCw, Send } from 'lucide-react';
 
-type JsonPlaceholderPost = {
+type TJsonPlaceholderPost = {
 	userId: number;
 	id: number;
 	title: string;
 	body: string;
 };
 
-type JsonPlaceholderCreate = {
+type TJsonPlaceholderCreate = {
 	title: string;
 	body: string;
 	userId: number;
 };
 
-/** 인라인 패키지/훅 이름 — 본문과 대비되도록 테두리·채도 있는 배경(살짝 투명) */
-const CODE_CHIP_CLASS =
-	'text-xs font-mono font-semibold px-2 py-0.5 rounded-md border border-amber-400/45 bg-amber-200/75 text-amber-950 shadow-sm dark:border-amber-500/40 dark:bg-amber-950/70 dark:text-amber-100';
-
-const POSTS_ENDPOINT = '/posts' as const;
-
 export default function ExUseApi(): React.ReactNode {
+	/** 상수 선언 */
+	const CODE_CHIP_CLASS =
+		'text-xs font-mono font-semibold px-2 py-0.5 rounded-md border border-amber-400/45 bg-amber-200/75 text-amber-950 shadow-sm dark:border-amber-500/40 dark:bg-amber-950/70 dark:text-amber-100';
 	const apiBase = import.meta.env.VITE_EXTERNAL_API_BASE_URL2 as string | undefined;
+	const POSTS_ENDPOINT = '/posts' as const;
 
-	const { data: posts, isPending, error, refetch, isFetching } = useApi<JsonPlaceholderPost[]>(POSTS_ENDPOINT);
-
+	/** useApi 훅 호출 */
+	const { data: posts, isPending, error, refetch, isFetching } = useApi<TJsonPlaceholderPost[]>(POSTS_ENDPOINT);
 	const {
 		mutate,
 		isPending: isPosting,
@@ -32,14 +30,17 @@ export default function ExUseApi(): React.ReactNode {
 		error: postError,
 		reset: resetMutation,
 		invalidateQueries,
-	} = useApi<JsonPlaceholderCreate & { id?: number }, JsonPlaceholderCreate>(POSTS_ENDPOINT, {
+	} = useApi<TJsonPlaceholderCreate & { id?: number }, TJsonPlaceholderCreate>(POSTS_ENDPOINT, {
 		method: 'POST',
 		type: 'mutation',
 	});
 
+	/** 미리보기 게시글 목록 8개 추출 */
 	const previewPosts = posts?.slice(0, 8) ?? [];
 
+	/** POST 요청 핸들러 */
 	const handlePostDemo = (): void => {
+		/** POST 요청 실행 */
 		mutate(
 			{
 				title: 'useApi 예제 POST',

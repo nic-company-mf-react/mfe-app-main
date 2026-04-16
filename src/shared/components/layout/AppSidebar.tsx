@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router';
-import { ChevronDownIcon, File, Folder, FolderOpen } from 'lucide-react';
+import { ChevronDownIcon, FileCode, Folder, FolderOpen } from 'lucide-react';
 import { useSidebar } from '@/shared/context/layout/SidebarContext';
 import { navItems, othersItems, type NavItem, type NavSubItem } from '@/shared/config/navigation';
 
@@ -27,11 +27,7 @@ const subTreeHasActivePath = (items: NavSubItem[], pathname: string): boolean =>
 const nestedGroupKey = (menuType: 'main' | 'others', navIndex: number, trail: number[]) =>
 	`${menuType}-${navIndex}-n-${trail.join('-')}`;
 
-const trailToNestedOpenKeys = (
-	menuType: 'main' | 'others',
-	navIndex: number,
-	trail: number[],
-): string[] => {
+const trailToNestedOpenKeys = (menuType: 'main' | 'others', navIndex: number, trail: number[]): string[] => {
 	const keys: string[] = [];
 	for (let d = 1; d < trail.length; d++) {
 		keys.push(nestedGroupKey(menuType, navIndex, trail.slice(0, d)));
@@ -39,9 +35,7 @@ const trailToNestedOpenKeys = (
 	return keys;
 };
 
-const findMatchedNav = (
-	pathname: string,
-): { type: 'main' | 'others'; index: number; trail: number[] } | null => {
+const findMatchedNav = (pathname: string): { type: 'main' | 'others'; index: number; trail: number[] } | null => {
 	for (const menuType of ['main', 'others'] as const) {
 		const items = menuType === 'main' ? navItems : othersItems;
 		for (let index = 0; index < items.length; index++) {
@@ -177,11 +171,9 @@ const AppSidebar: React.FC = () => {
 						>
 							<span className="menu-item-text flex min-w-0 items-center gap-2">
 								{isSecondDepthLeaf && (
-									<File
+									<FileCode
 										className={`h-4 w-4 shrink-0 ${
-											isActive(subItem.path)
-												? 'text-brand-500'
-												: 'text-gray-500 dark:text-gray-400'
+											isActive(subItem.path) ? 'text-brand-500' : 'text-gray-500 dark:text-gray-400'
 										}`}
 										aria-hidden
 									/>
